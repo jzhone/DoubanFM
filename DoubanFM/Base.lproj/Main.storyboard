@@ -12,7 +12,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="wWg-9Q-P28">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="wWg-9Q-P28">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
@@ -62,17 +62,28 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <imageView hidden="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btnPlay.png" id="qjX-nT-evN">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="278"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="btnPlay" destination="qjX-nT-evN" id="tOu-WW-jV7"/>
                         <outlet property="iv" destination="wWg-9Q-P28" id="Ome-MN-lL9"/>
                         <outlet property="playTime" destination="TVA-1g-Mb3" id="xvv-42-olv"/>
                         <outlet property="progressView" destination="4BX-Nc-Qg2" id="HVy-IO-heq"/>
+                        <outlet property="tap" destination="HjD-C0-KOh" id="PoJ-Xm-Zlc"/>
                         <outlet property="tv" destination="qYu-wD-tuf" id="cF6-y1-c2q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="HjD-C0-KOh">
+                    <connections>
+                        <action selector="onTap:" destination="vXZ-lx-hvc" id="oiK-NI-xI3"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="148" y="315"/>
         </scene>
@@ -121,6 +132,9 @@
             <point key="canvasLocation" x="549" y="315"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="btnPlay.png" width="320" height="278"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

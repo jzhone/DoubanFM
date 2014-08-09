@@ -16,6 +16,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var iv: UIImageView!
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var playTime: UILabel!
+    @IBOutlet var tap: UITapGestureRecognizer?
+    @IBOutlet weak var btnPlay: UIImageView!
     
     var eHttp:HttpController = HttpController()
     
@@ -28,6 +30,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     var timer: NSTimer?
     
+    @IBAction func onTap(sender: AnyObject) {
+        if sender.view == btnPlay{
+            btnPlay.hidden = true
+            audioPlayer.play()
+            btnPlay.removeGestureRecognizer(tap!)
+            iv.addGestureRecognizer(tap!)
+        } else if sender.view == iv {
+            btnPlay.hidden = false
+            audioPlayer.pause()
+            btnPlay.addGestureRecognizer(tap!)
+            iv.removeGestureRecognizer(tap!)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -35,6 +51,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         eHttp.onSearch("http://www.douban.com/j/app/radio/channels")
         eHttp.onSearch("http://douban.fm/j/mine/playlist?type=n&channel=0&from=mainsite")
         progressView.progress = 0.0
+        iv.addGestureRecognizer(tap!)
     }
 
     override func didReceiveMemoryWarning() {
@@ -123,6 +140,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.audioPlayer.contentURL = NSURL(string: url)
         self.audioPlayer.play()
         timer = NSTimer.scheduledTimerWithTimeInterval(0.4, target: self, selector: "onUpdate", userInfo: nil, repeats: true)
+        btnPlay.removeGestureRecognizer(tap!)
+        iv.addGestureRecognizer(tap!)
+        btnPlay.hidden = true
     }
     
     func onUpdate(){
